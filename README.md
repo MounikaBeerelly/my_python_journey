@@ -1,11 +1,11 @@
-- `%d` 
+- `%d`
     - type format indicators, It represents the value will be an integer.
-    - These type format indicators in print() function will act as placeholder, To reference the actual data in that position that will be printed at run time. 
+    - These type format indicators in print() function will act as placeholder, To reference the actual data in that position that will be printed at run time.
 
 - `print(f"\nCreating a single dimension array...", end="\n")`
     - The f before the string — means it’s an f-string (formatted string literal) in Python.
     - It allows you to easily insert variables or expressions
-    
+
 - `string interpolation`
     - ```
       myName = 'John'
@@ -42,7 +42,7 @@
 3. For every false condition of the `if` branch, when we have an alternate condition to be checked under the "False" state of the "if" we need `elif`.
 
 ### What is meant by iteration in programming?
-- `Iteration` in computer programming is a concept of Executing the sam eblock of code OR instruction(s) over and over, for multiple time, without replacing the insctructional code in the source multiple times.
+- `Iteration` in computer programming is a concept of Executing the same block of code OR instruction(s) over and over, for multiple time, without replacing the insctructional code in the source multiple times.
 - The program structure that implements the concept of iteration is called as `loop`.
 - Every iteration should have five components to make the iteration to the situation.
     1. Initialization
@@ -55,7 +55,7 @@
         - is any kind of operational instruction that modifies the initial state of the iteration of the loop to enter into the next level of the iterative process OR looping process. To make actions look new to the next level of the real time environment.
     5. Termination
         - Is a state that makes the iterative process to quit and keeps the program to get into the next level of the instruction in the program surface.
-    
+
 **Types of Iterations:**
 1. Definite Iteration (Finite iteration)
 2. In-definite Iteration(In-finite iteration)
@@ -89,7 +89,7 @@
 ### Understanding "zip()" function in for loop:
 - It is built-in function in Python namespace.
 - zip() function accepts `iterable objects` OR `container objects` as an argument and returns A `singe iterator object`.
-- The returned `single iterator object` will be having mapped values from all the containers that are supplied. 
+- The returned `single iterator object` will be having mapped values from all the containers that are supplied.
 - "zip()" built-in function is mostly used to `map smallar index of multiple containers` to be handled as a `single entity`.
     - Basic syntax:
         - `zip("IteratorObjects)`
@@ -145,8 +145,8 @@
                        ^             ^
                        |             |  Positional notation
             addValues(operand01, operand02)
-    ```        
+    ```
 - When positional notation is used in function call, all the supplied "Actual Parameters" should follow the exact order of declaration defined in the "Functions Definition".
     - Any time the order of the "Actual Parameters" in the "Fucntion call" is mis-matching to the declared order of the "types" of the "Formal Parameters" either
         - Logically the operational state of the function will be wrong OR
-        - The function at run-time can generate an error due to "Type Mis-Match" 
+        - The function at run-time can generate an error due to "Type Mis-Match"

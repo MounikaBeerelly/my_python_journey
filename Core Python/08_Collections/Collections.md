@@ -22,7 +22,7 @@
     print("\nThe class type is : ", type(stationaryItems))
 
     print("\nThe Stationary items are: ", stationaryItems, end="\n")
-    
+
     print("\nFirst Stationary item is: ", stationaryItems[0], end="\n")
 ```
 
@@ -32,7 +32,7 @@
         - Shallow copy is a process where `A new object of collection directly references the properties and behaviors of the existing collection object`.
         - In Shallow copy one object changes another reference object also changes
     2. **Deep Copy** :
-        - 
+        -
 
 ### What are Python Tuple :
 - Similar to Lists
@@ -42,7 +42,7 @@
         nums = (1, 2, 3, 4)
         print("\nDisplay the elements from the tuple are : ", tuple(nums), end="\n)
     ```
-- If you want to do any modifications 
+- If you want to do any modifications
     - change tuple into list
     - do the operations
     - change list to tuple
@@ -52,7 +52,7 @@
 2. Every element in the `Set` should be definitely
     - Unique
     - Immutable
-3. The elements int eh `Set` collection are never associated with any index
+3. The elements in the `Set` collection are never associated with any index
 4. Python `Set` collection is a `Non-indexed data cllection object`.
 5. Denoted by `{}`
 6. Print the data using `set constructor`.
@@ -63,11 +63,11 @@
         print("\nThe class type is : ", type(stationaryItems))
 
         print("\nThe Stationary items are: ", set(stationaryItems), end="\n")
-        
+
     ```
 
 ### Understanding `Dictionaries` in Python:
-1. `Dictionary` in Python is a collection type, which amnages "Un-Ordered collection of data values".
+1. `Dictionary` in Python is a collection type, which manages "Un-Ordered collection of data values".
 2. `Dictionary` is used to store the data values in the format of `<Key : Value>` pairs.
 - **Basic Syntax:**
 

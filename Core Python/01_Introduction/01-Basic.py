@@ -5,7 +5,7 @@ os.system("cls")
 
 print("Hello everyone, I started learning Python")
 
-""" 
+"""
 - An EOL error indicates that within the represented line, the string is not properly terminated.
 - Semicolon after any python statement not an error, but it is not compulsory.
 """
