@@ -27,7 +27,7 @@ def outerFunction():
 
     def innerFunction() :
         "The local scope of the inner function begins here"
-        
+
         1. Local scope of the inner function (first priority)
         2. Enclosing Scope of the outer functions local scope
         3. Global scope of the program level
@@ -36,12 +36,12 @@ def outerFunction():
         return
         "The local scope of the inner function ends here"
 
-    return 
+    return
     "The local scope of the outer function ends here"
 ```
 
 ### What is meant by Closure ?
-1. A `Closure` is the "Cobination of a function bundled together with all its references to its surrounding spaces".
+1. A `Closure` is the "Combination of a function bundled together with all its references to its surrounding spaces".
 2. A `Closure` is a technique for implementing "lexically scoped name binding with respect to any programming language with the concept of `First class functions`".
 3. Closures are possible in Python when
     1. We have a nested function: Outer function containing the definition of the inner function

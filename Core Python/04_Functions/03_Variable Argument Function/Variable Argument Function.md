@@ -7,8 +7,8 @@
 ## Keyword argument ( **kwargs )
 1. Keyword Arguments are arguments that are passed to a function with a `key-value` pair.
 2. Keyword Arguments are represented as `**kwargs`.
-    - The **kwargs syntax allows the function to accept an arbitary number og keyword arguments.
-    - **kwargs sytx collects the given arguments into a Python collection called as `Dictionary`.
+    - The **kwargs syntax allows the function to accept an arbitary number or keyword arguments.
+    - **kwargs syntax collects the given arguments into a Python collection called as `Dictionary`.
         - Keys are treated as `Argument Names`
         - Values are the corresponding arguments that represent `actual values`.
 
