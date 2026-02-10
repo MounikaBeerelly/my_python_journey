@@ -184,3 +184,8 @@ Use a list when order and duplicates matter or when you need indexing. Use a set
 ### 15. Why keys in dict must be immutable?
 - Dictionary keys must be immutable because Python uses the key’s hash to locate values. If the key changed after insertion, its hash would change and the dictionary wouldn’t be able to find it, breaking correctness.
 - A hash is a unique (or almost unique) number used to quickly identify data.
+
+### 16. Explain the difference between /, //, and how division behaves with negative numbers.
+- `/` performs true division and always returns a float.
+- `//` performs floor division, returning the largest integer less than or equal to the result.
+- With negative numbers, Python rounds toward negative infinity, so -5 // 2 becomes -3, not -2.
