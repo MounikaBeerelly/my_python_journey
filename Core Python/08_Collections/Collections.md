@@ -51,7 +51,7 @@
 1. A `Set` is Python collection with an "Un-ordered" collection of items.
 2. Every element in the `Set` should be definitely
     - Unique
-    - Immutable
+    - mutable
 3. The elements in the `Set` collection are never associated with any index
 4. Python `Set` collection is a `Non-indexed data cllection object`.
 5. Denoted by `{}`
