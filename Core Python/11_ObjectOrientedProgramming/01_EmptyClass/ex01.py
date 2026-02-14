@@ -4,13 +4,13 @@ import os
 os.system("cls")
 
 class EmptyClass :
-            pass
-        
+    pass
+
 emptyClassObject01 = EmptyClass() # Creating Instance of the class : object
-print("\n\nThe reference address of the object is : ", emptyClassObject01, end="\n")    
+print("\n\nThe reference address of the object is : ", emptyClassObject01, end="\n")
 
 emptyClassObject02 = EmptyClass() # Creating Instance of the class : object
-print("\n\nThe reference address of the object is : ", emptyClassObject02, end="\n")    
+print("\n\nThe reference address of the object is : ", emptyClassObject02, end="\n")
 
 
 """
