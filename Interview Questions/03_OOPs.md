@@ -60,3 +60,37 @@ Example:
     def __init__(self, val):
         self.instance_var = val # instance variable
 ```
+
+### 7. What is inheritance in Python?
+- Inheritance allows a class to inherit attributes and methods from another class. Inheritance enables the child class to inherit the properties (attributes) and behaviors (methods) of the parent class, and it can also define its own additional attributes and methods or override existing ones.
+- Example:
+    ```
+        # Define the Parent class (base class)
+        class Parent:
+            pass
+        ​
+        # Define the Child class that inherits from Parent class
+        class Child(Parent):
+            pass
+    ```
+
+### 8. What is method overloading in Python?
+- Method overloading means defining multiple methods with the same name but different parameters in the same class.
+- Unlike Java or C++, Python does not allow multiple methods with the same name in the same class.
+- If you define multiple methods with the same name, the last one overrides the previous ones.
+- Example (Not Working Like Java)
+    ```
+        class Example:
+        def add(self, a, b):
+            return a + b
+
+        def add(self, a, b, c):   # This overrides the first one
+            return a + b + c
+    ```
+- Only second add() exists
+- **How Python Achieves Method Overloading**
+    - Python handles it differently using:
+        1. Default arguments
+        2. Variable-length arguments (*args)
+        3. Keyword arguments (**kwargs)
+        4. Type checking inside function
