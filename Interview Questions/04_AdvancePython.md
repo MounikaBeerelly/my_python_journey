@@ -65,3 +65,81 @@ Can't be divided by zero!
     ```
     - Generates one value at a time
     - Much more memory efficient
+
+### 6. How to remove file in Python ?
+In Python, we can delete a file using `os.remove() or Path.unlink()` from the pathlib module. It’s good practice to check if the file exists or handle exceptions like FileNotFoundError and PermissionError to avoid runtime crashes.
+
+### 7. What is PIP?
+PIP (Python Package Installer for Python) is the standard package manager for Python. It allows you to install, upgrade, and manage third-party Python libraries and packages from the Python Package Index (PyPI) or other repositories.
+
+### 8. What is zip fucntion ?
+- It is built-in function in Python namespace.
+- zip() function accepts `iterable objects` OR `container objects` as an argument and returns A `singe iterator object`.
+- The zip() function in Python is used to combine multiple iterables (like lists, tuples, etc.) element by element based on their index position.
+    ```
+        zip(iterable1, iterable2, ...)
+
+        names = ["Alice", "Bob", "Charlie"]
+        scores = [85, 90, 95]
+
+        result = list(zip(names, scores))
+        print(result) # [('Alice', 85), ('Bob', 90), ('Charlie', 95)]
+
+    ```
+- If combining two different lists, zip() stops at the shortest list.
+- When do we use zip() :
+    - Combining related data
+    - Looping over multiple lists together
+    - Creating dictionaries
+
+### 9. What is Pickling and Unpickling ?
+- `Pickling` is the process of converting a Python object into a byte stream
+- `Unpickling` is converting that byte stream back into a Python object.
+- It is done using the `pickle` module.
+- It is commonly used for saving objects to files or sending them over networks.
+- It is not secure for untrusted data.
+- Pickle converts Python objects into bytes by generating a sequence of opcodes that describe how to reconstruct the object. These opcodes are encoded into a binary format. During unpickling, Python executes these instructions using a stack-based virtual machine to recreate the original object.
+    ```
+        import pickle
+
+        data = {"name": "Mounika", "experience": 10}
+        bytes_data = pickle.dumps(data) # pickling object
+
+        pickle.loads(data) # unpickling
+    ```
+
+### 10. Write a code to display the current time?
+- Display the current time in Python using the datetime module. The datetime.now() function returns the current date and time, and we can format it using strftime().
+- `strftime()` :
+    - stands for "string format time"
+    - It is used to convert a datetime object into a formatted string using specific format codes like %Y, %m, %d, etc.
+    ```
+        from datetime import datetime
+
+        now = datetime.now()
+        print("Current Time:", now.strftime("%y-%m-%d %H:%M:%S"))
+    ```
+
+### 11. What are Exception Groups in Python?
+- Exception Groups, introduced in Python 3.11, allow multiple exceptions to be raised and handled together. They are especially useful in concurrent programming. We use except* syntax to handle specific exceptions inside the group.
+    ```
+        import asyncio
+
+        async def task1():
+            raise ValueError("Error in task1")
+
+        async def task2():
+            raise TypeError("Error in task2")
+
+        async def main():
+            try:
+                async with asyncio.TaskGroup() as tg:
+                    tg.create_task(task1())
+                    tg.create_task(task2())
+            except* ValueError:
+                print("ValueError handled")
+            except* TypeError:
+                print("TypeError handled")
+
+        asyncio.run(main())
+    ```

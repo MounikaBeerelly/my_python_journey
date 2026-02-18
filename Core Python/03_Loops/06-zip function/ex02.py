@@ -15,5 +15,7 @@ itemsQuantity = [10,25, 15, 20, 5]
 
 print("The final basket with Items and Quantity..", end="\n")
 
+print(list(zip(itemsinBasket,itemsQuantity)), end="\n")
+
 for basketItem, itemQuantity in zip(itemsinBasket,itemsQuantity):
     print(basketItem,itemQuantity, end="\n")
