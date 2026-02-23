@@ -15,7 +15,7 @@ print(f"\nPrinting the elements from the array...",end="\n")
 print(myArray2)
 
 print(f"\nCombining two array into a final array...",end="\n")
-finalArray = np.concatenate(myArray1,myArray2)
+finalArray = np.concatenate((myArray1,myArray2))
 print(finalArray)
 
 
