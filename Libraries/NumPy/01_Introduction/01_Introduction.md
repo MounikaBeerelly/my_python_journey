@@ -10,7 +10,7 @@
     1. NumPy’s main feature is the ndarray (N-dimensional array).
     2. It is faster and more efficient than Python lists.
     3. NumPy arrays allow for efficient storage and manipulation of large amounts of data.
-   
+
    **Illustrative Example**
    1. A 2D array can represents a Matrix
    2. A 3D array can represent a Tensor
@@ -22,21 +22,21 @@
 
 3. **Vectorization**
     1. NumPy arrays supports vectorized operations.
-    2. Lets you perform operations without loops.    
+    2. Lets you perform operations without loops.
     3. Vectorize Operations provide much faster execution compared to loops written in Python.
     4. Example - Operations like addition, multiplication, etc., can be done directly on the entire array without needing to iterate over each element.
 
 4. **Memory Efficiency**:
     1. NumPy arrays are more memory efficient than Python Lists because they store elements of the same type.
-    2. Data is stored in continuous memory blocks, which makes it faster.
+    2. Data is stored in contiguous memory blocks, which makes it faster.
 
 5. **Mathematical functions**:
-    1. NumPy comes with a wide array of MAthematical functions to perform operations like
+    1. NumPy comes with a wide array of Mathematical functions to perform operations like
         1. Trigonometry
         2. Linear Algebra
         3. Statistics
         4. Random Number Generation
-
+a
 6. **Integration with other libraries**
     1. NumPy is the foundation for many other scientific computing libraries in python like
         1. SciPy (Scientific Python)
@@ -68,7 +68,7 @@
 
 4. **Mathematical and Statistical Operations**
     - NumPy supports a wide range of Mathematical and Statistical Operations.
-    - NumPy provides operations from basic to advance implementations in 
+    - NumPy provides operations from basic to advance implementations in
         - Matrix Addition
         - Matrix subtraction
         - Matrix multiplication
@@ -87,16 +87,16 @@
     - NumPy arrays are stored in contiguous blocks of memory, which allows for efficient access to elements.
 
 2. **Vectorized Operations**
-    - NumPy leverages vectorizations to perform operations on whole arrays a t once
-    - NumPy eliminates the need for explicit loops inpython, leading to faster execution.
+    - NumPy leverages vectorizations to perform operations on whole arrays at once
+    - NumPy eliminates the need for explicit loops in python, leading to faster execution.
     - NumPy operations are performed in compiled C code, which is much faster than Python's interpreted bytecode.
 
 3. **Low-level optimizations**
-    - NumPy is built on C libraries like    
+    - NumPy is built on C libraries like
         - LAPACK( Linear algebra Package)
         - BLAS(Basic Linear Algebra Subprograms)
     - which are highly optimized for matrix and vector computations.
-    
+
 4. **Multithreading**
     - NumPy operations are often parallelized, meaning that large computations can be executed concurrently, utilizing multiple CPU cores, that speeding up the execution.
 
@@ -117,7 +117,7 @@
 1. Data Analysis
     - Used for data manipulation and numerical analysis.
     - Libraries like Pandas are bulit on top of NumPy arrays
-    
+
 2. Machine Learning
     - In Machine learning, NumPy arrays are used to
         - Represent datasets
