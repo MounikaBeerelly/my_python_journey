@@ -48,7 +48,7 @@
         - object
     6. Structured types:
         - custom fields using tuples
-7. `Changing dtype`: Use .astype() to cast cast an array to different types
+7. `Changing dtype`: Use .astype() to cast an array to different types
     - **Example**:
     ```
     arr = np.array([1,2,3], dtype='int32')

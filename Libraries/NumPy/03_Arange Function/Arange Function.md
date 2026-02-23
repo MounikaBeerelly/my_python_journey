@@ -1,7 +1,7 @@
 ## Arange Function:
 
-### np.arange() function:
-
+### np.arange() function: array range
+- It means creating an array within a given range of values.
 1. The `np.arange()` function in NumPy generates evenly spaced values within a specified interval, creating a 1D array.
 
 ### Basic Syntax:

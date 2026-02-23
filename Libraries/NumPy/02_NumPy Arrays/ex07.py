@@ -18,6 +18,9 @@ print(f"\nCombining two array into a final array...",end="\n")
 finalArray = np.concatenate((myArray1,myArray2))
 print(finalArray)
 
+a = np.array([1,2,3])
+b = 2
+print(a + b) # [3,4,5]
 
 """
 When arrays are concatenated, Two different arrays of "Different row order, having same column order" can be concatenated

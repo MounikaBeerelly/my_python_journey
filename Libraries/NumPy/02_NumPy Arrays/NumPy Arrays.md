@@ -2,7 +2,7 @@
 
 1. NumPy arrays are the core data structure of the NumPy library
 2. Understanding NumPy is fundemental to working efficiently with numerical data in Python
-3. NumPy arrays provide High-performance,Multi-dimensional data structures optimized for numerical computations.
+3. NumPy arrays provide High-performance, Multi-dimensional data structures optimized for numerical computations.
 
 ## What is a NumPy Array?
 
@@ -11,7 +11,7 @@
 3. Elements in NumPy array are indexed by a tuple of non-negative integers
 4. The number of dimensions and the shape of the array are defined by the user, making it highly flexible.
 
-## How amny dimensions are supported by NumPy Arrays?
+## How many dimensions are supported by NumPy Arrays?
 
 1. NumPy arrays are multi-dimensional
 2. A NumPy array can be
