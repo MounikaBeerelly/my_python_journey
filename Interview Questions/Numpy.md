@@ -5,9 +5,10 @@
     - Multi-dimensional arrays
     - Broadcasting : Allow operations on arrays of different shapes
     - Vectoriation : Perform operations without loops
-    - Memory Efficinecy : Numpy arrays more memory efficient than Python List, because it stores same type of elements in Contiguous memory blocks
+    - Fast and efficient
     - Integration with other libraries : foundation for other pyhton libraries like Pandas, SciPy
-
+    - Indexing and Slicing
+    - Memory Management
 ### 2. Why Numpy is Important ?
 1. Speed and Performance : NumPy is written in C, so it’s very fast
 2. Handles large datasets like images or time-series data efficiently.
@@ -21,7 +22,7 @@
 - Low level optimizations : built on C libraries
 - Multithreading : large computations can be executed concurrently, utilizing multiple CPU cores, that speeding up the execution
 
-### 4. Difference between Lista and Numpy ?
+### 4. Difference between Lists and Numpy ?
 | Python Lists | NumPy Arrays |
 | ------------ | ------------ |
 | Heterogeneous : hold elements of different data types | Homogeneous : All elements must be of the same data type |
@@ -69,7 +70,13 @@
     - Three OR more dimensions : Higher-dimensional called as Tensor
 - Once a NumPy array is created, its size cannot be changed. Which means elements cannot be added OR Removed, but the values in the array can be modified.
 - Syntax : `numpy.array(object,dtype=none,copy=true,order='K',subok=False,ndmin=0)`
-
+- We can create NumPy arrays using various methods. Here are some common ways to create NumPy arrays:
+    - Using np. array()
+    - np.zeros()
+    - np.ones()
+    - np.full()
+    - np.arange()
+    - np.linspace()
 ### 8. What is np.arange() function ?
 - np.arange() : array range
 - It means creating an array within a given range of values.
@@ -80,8 +87,6 @@
     - **stop**: (required) End value of the sequence (exclusive)
     - **step**: (optional) Difference between consecutive values. Default is 1
     - **dtype**: (optional) Specifies the desired data type of the array. If not provided, it is inferred
-
-
 ### 9. What is reshape() function ?
 - The reshape() function is used to change the shape (dimensions) of an array without changing its data.
 ```
@@ -104,10 +109,20 @@
     - **retstep**: (Optional) If True, returns the spacing between points along with the array
     - **dtype**: (Optional) specifies the desired data type of the output array
     - **axis**: (Optional) Axis in the result along which the values are stored
-
-### 11. What is Random Function ?
-- NumPy random functions generate pseudo-random numbers from uniform, normal, and discrete distributions and are widely used in ML, simulations, and testing.
-
+### 11. How to generate random numbers with NumPy?
+- NumPy provides a wide range of functions for generating random numbers. You can generate random numbers from various probability distributions, set seeds for reproducibility and more.
+- Here are some common ways to generate random numbers with NumPy:
+1. Using np.random.rand()
+    - Generating a Random Float between 0 and 1 using np.random.rand()
+    - `random_float = np.random.rand()`
+2. Using np.random.randint()
+    - Generating a Random Integer within a Range using np.random.randint().
+    - `random_integer = np.random.randint()`
+3. Using np.random.randn()
+    - `random_float = np.random.rand()`
+4. Using np.random.seed()
+    - We can set a seed using np.random.seed() to ensure that the generated random numbers are reproducible.
+    - `np.random.seed(seed_value)`
 ### 12. What is Empty function ?
 - The function `np.empty()` is a part of the NumPy library in python, and it is used to create an uninitialized array.
 - Uninitialized array means that the contents of the array are not set to any specific value by the developer
@@ -122,7 +137,6 @@
         - 'C' is for row-major (C-style) order,
         - 'F' is for column-major (Fortan style) order.
         - By default is 'C'
-
 ### 13. What is Full Function in Python?
 - The function `np.full()` is a part of the NumPy library in python, and it is used to create an array filled with a specified value
 - `np.full()` function allows the developer to generate arrays of any shape and type, initialized to constant value
@@ -147,24 +161,24 @@
 ### 15. Array attributes in Numpy?
 - NumPy provides several array attributes, that typically provide information about the array's structure and memory layout.
 - The list of Array attributes are:
-    - ndarray.shape
-    - ndarray.size
-    - ndarray.dtype
-    - ndarray.ndim
-    - ndarray.itemsize
-    - ndarray.nbytes
-    - ndarray.T
-    - ndarray.flags
-    - ndarray.strides
-    - ndarray.base
-    - ndarray.real
-    - ndarray.imag
-    - ndarray.flat
-    - ndarray.ctypes
-    - ndarray.view()
-    - ndarray.copy()
-    - ndarray.tolist()
-    - ndarray.data()
+    - `ndarray.shape` - returns array dimesions
+    - `ndarray.size` - returns total number of elemnts
+    - `ndarray.dtype` - returns datatype of elements
+    - `ndarray.ndim` - returns number of dimensions
+    - `ndarray.itemsize` - retuns size of each element (bytes)
+    - `ndarray.nbytes` - total memory used
+    - `ndarray.T` - Transpose of array
+    - `ndarray.flags` - Memory layout info (C_CONTIGUOUS, OWNDATA, etc.)
+    - `ndarray.strides` : Bytes to move in memory for next step in each dimension.
+    - `ndarray.base` : Returns base array if view
+    - `ndarray.real` : Real part of complex array
+    - `ndarray.imag` : Imaginary part of complex array
+    - `ndarray.flat` : Iterator over array elements
+    - `ndarray.ctypes` : Gives C interface pointer
+    - `ndarray.view()` : Creates view (shares memory)
+    - `ndarray.copy()` : Creates deep copy
+    - `ndarray.tolist()` : Convert to Python list
+    - `ndarray.data()` : Pointer to raw memory buffer
 
 ### 16. Understanding the concept of Indexing and Slicing in NumPy Arrays
 - **Indexing** :
@@ -172,13 +186,127 @@
     - Indexing allows retrieving OR modifying the individual elements OR group of elements in an array
     - Indexing starts from 0, and Thereby increments by 1
     - NumPy arrays will provide `Negative Indexing` to access the elements from the end of the array
-    - Basic syntax of indexing
+    - Syntax : Uses square brackets with index values
         - `NumPyArray[indexNumber]`
+        - e.g., arr[2], arr[1, 3]
 - **Slicing** -
     - Slicing allows accessing a range of elements (Also called as Sub-Array) from a NumPy array
     - Slicing is done using a colon (:) notation
-    - Basic syntax of slicing
+    - Syntax: Uses a colon (:) inside square brackets
         - `NumPyArray(start:stop:step)`
             - Start: The starting index (Inclusive)
             - Stop: The ending index (Exclusive)
             - Step: The increment between indices (default is 1)
+            - e.g., arr[1:5]
+
+### 17. How does NumPy handle memory?
+### 18. Explain views vs copies in NumPy ?
+### 19. How to optimize NumPy performance?
+### 20. How does NumPy achieve parallelism?
+### 21. You have 10M rows — Python loop is slow. What do you do?
+### 22. Memory error while loading large dataset ?
+### 23. What is __array_ufunc__ and why is it important?
+### 24.  Convert a multidimensional array to 1D array.
+- Convert a multidimensional array to a 1D array which is also known as flattening the array in NumPy using various methods. Two common methods are using for the Convert a multidimensional array to 1D array.
+1. Using flatten():
+    ```
+        # Create a multidimensional array
+        multidimensional_array = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+        ​
+        # Use the flatten() method to convert it to a 1D array
+        one_dimensional_array = multidimensional_array.flatten()
+        ​
+        print("one dimensional array", one_dimensional_array)
+
+        Output:
+        -------
+        one dimensional array [1 2 3 4 5 6 7 8 9]
+    ```
+2. Using ravel():
+    ```
+        # Create a multidimensional array
+        multidimensional_array = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+        ​
+        # Use the ravel() method to convert it to a 1D array
+        one_dimensional_array = multidimensional_array.ravel()
+        ​
+        print("one dimensional array", one_dimensional_array)
+
+        Output:
+        -------
+        one dimensional array [1 2 3 4 5 6 7 8 9]
+    ```
+- Both of these methods will flatten the multidimensional array into a 1D array. The primary difference between them:
+    - Flatten() returns a new copy of the array. Any modifications in the flattened array do not affect the original array
+    - Ravel() returns a flattened view of the original array whenever possible. Changes made to the raveled array may affect the original array since they share the same data in memory.
+
+### 25. How do you sort a NumPy array in ascending or descending order?
+- In NumPy, you can sort arrays using:
+    - np.sort() → returns a sorted copy
+    - array.sort() → sorts in-place
+1. Sort in Ascending Order (Default) :
+    - Using `np.sort()` : Original array remains unchanged.
+        ```
+            import numpy as np
+
+            arr = np.array([5, 2, 9, 1, 7])
+            sorted_arr = np.sort(arr)
+
+            print(sorted_arr) # [1, 2, 5, 7, 9]
+        ```
+    - Using in-place sort : Modifies the original array
+        ```
+            arr.sort()
+            print(arr)
+        ```
+2. Sort in Descending Order
+- NumPy doesn’t have a direct descending flag, but you can reverse the ascending result.
+    - Reverse slicing
+        ```
+            desc_arr = np.sort(arr)[::-1]
+            print(desc_arr)
+        ```
+    - Using np.flip
+        ```
+            desc_arr = np.flip(np.sort(arr))
+        ```
+3. Sorting 2D arrays
+    - Sort rows (axis = 1)
+        ```
+            arr2d = np.array([[3, 1, 2],
+                              [9, 7, 8]])
+
+            print(np.sort(arr2d, axis=1))
+
+            Output:
+            -------
+            [[1 2 3]
+             [7 8 9]]
+        ```
+    - Sort columns (axis = 0)
+        ```
+            print(np.sort(arr2d, axis=0))
+
+             Output:
+             -------
+            [[3 1 2]
+             [9 7 8]]
+        ```
+4. Sorting with Indices
+    - np.argsort() → returns index positions
+        ```
+            arr = np.array([5, 2, 9, 1])
+            indices = np.argsort(arr)
+
+            print(indices)       # [3 1 0 2]
+            print(arr[indices])  # [1 2 5 9]
+        ```
+    - Useful for:
+        - ranking
+        - sorting multiple arrays based on one array
+        - interview scenarios
+
+**Note** :
+- np.sort() → copy
+- array.sort() → in-place
+- np.argsort() → returns sorted indices
