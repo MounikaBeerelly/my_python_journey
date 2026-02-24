@@ -429,3 +429,26 @@ To handle MemoryError, I use chunk loading, memory mapping, dtype optimization, 
     arr = np.array([0, 5, 4, 0, 4, 4, 3, 0, 0, 5, 2, 1, 1, 9])
     print(np.bincount(arr)) # [4 2 1 1 3 2 0 0 0 1]
 ```
+### 30. How is vstack() different from hstack() in NumPy?
+- Both methods are used for combining the NumPy arrays.
+- The main difference is that the hstack method combines arrays horizontally whereas the vstack method combines arrays vertically.
+- For example, consider the below code.
+```
+    import numpy as np
+    a = np.array([1,2,3])
+    b = np.array([4,5,6])
+
+    # vstack arrays
+    c = np.vstack((a,b))
+    print("After vstack: \n",c)
+    # hstack arrays
+    d = np.hstack((a,b))
+    print("After hstack: \n",d)
+    The output of this code would be:
+
+    After vstack:
+    [[1 2 3]
+    [4 5 6]]
+    After hstack:
+    [1 2 3 4 5 6]
+```
