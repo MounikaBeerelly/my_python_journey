@@ -200,12 +200,63 @@
             - e.g., arr[1:5]
 
 ### 17. How does NumPy handle memory?
+NumPy handles memory efficiently using contiguous storage, homogeneous dtypes, views instead of copies, stride-based indexing, and broadcasting to avoid unnecessary memory allocation.
 ### 18. Explain views vs copies in NumPy ?
+- `View` :
+    - A view is another array object that shares the same memory as the original array.
+    - Changing the view changes the original array.
+    - Example
+    ```
+        import numpy as np
+
+        arr = np.array([1, 2, 3, 4])
+        view = arr[1:3]   # slicing creates a view
+
+        view[0] = 99
+        print(arr)   # original array changed
+
+        Output
+        ------
+        [ 1 99  3  4]
+    ```
+    - Because both arrays point to the same memory block
+- `Copy` :
+    - A copy creates a new memory allocation
+    - Changing the copy does NOT affect the original array
+    - Example
+    ```
+        import numpy as np
+
+        arr = np.array([1, 2, 3, 4])
+        copy = arr[1:3].copy()
+
+        copy[0] = 10
+        print(arr)   # original unchanged
+        print(copy)
+
+        Output
+        ------
+        [ 1 99  3  4]
+        [10  3]
+    ```
 ### 19. How to optimize NumPy performance?
-### 20. How does NumPy achieve parallelism?
+- Use Vectorization
+- Choose right datatype
+- Avoid unnecessary copies : Use views instead of copies
+- Use in-place operations
+- Leverage broadcasting : Broadcasting avoids creating temporary arrays
+- Use built-in NumPy functions
+### 20. How does NumPy achieve parallelism ?
+NumPy achieves parallelism indirectly through vectorized operations and multi-threaded BLAS/LAPACK libraries that execute computations across CPU cores and SIMD units.
 ### 21. You have 10M rows — Python loop is slow. What do you do?
+I avoid Python loops and use NumPy vectorization. If vectorization isn’t possible, I use Numba for JIT compilation or Dask for chunked/distributed processing.
 ### 22. Memory error while loading large dataset ?
+To handle MemoryError, I use chunk loading, memory mapping, dtype optimization, column filtering, and out-of-core tools like Dask.
 ### 23. What is __array_ufunc__ and why is it important?
+- A ufunc (universal function) is a NumPy function that operates element-wise on arrays.
+- `__array_ufunc__` is a special method (dunder method) that lets custom classes override how NumPy ufuncs behave.
+    - Introduced in NumPy 1.13
+    - Enables custom array-like objects to integrate with NumPy
 ### 24.  Convert a multidimensional array to 1D array.
 - Convert a multidimensional array to a 1D array which is also known as flattening the array in NumPy using various methods. Two common methods are using for the Convert a multidimensional array to 1D array.
 1. Using flatten():
@@ -310,3 +361,71 @@
 - np.sort() → copy
 - array.sort() → in-place
 - np.argsort() → returns sorted indices
+
+### 26. Difference between np.reshape() and np.resize()
+| Feature | reshape() | resize() |
+| ------- | --------- | -------- |
+| Definition | Returns a new view or copy of the array with a new shape | Modifies the array itself (in-place) to match the new shape |
+| Original Array | Does not change the original array unless inplace modification is forced | 	Changes the original array directly |
+| Return Value	| Returns the reshaped array (new object) |	Returns None (operation done in-place) |
+| Data Handling | Requires that the total number of elements match the new shape |	If new size is bigger → fills with zeros. If smaller → array is trimmed |
+| Memory | Often returns a view (shares data) if possible, else a copy | Creates/reallocates memory if needed |
+| Use Case |	When you want a reshaped version of an array without altering the original | When you want to permanently change the shape of the array, even if padding or truncating is needed |
+
+### 27. How to compare two NumPy arrays?
+1. `Using == operator`
+    - We generally use the == operator to compare two NumPy arrays to generate a new array object.
+    - Call ndarray.all() with the new array object as ndarray to return True if the two NumPy arrays are equivalent.
+    ```
+        import numpy as np
+        ​
+        arr1 = np.array([1, 2, 3])
+        arr2 = np.array([1, 2, 3])
+        arr3 = np.array([1, 4, 3])
+        ​
+        print((arr1 == arr2).all())  # True
+        print((arr1 == arr3).all())  # False
+
+        Output:
+        -------
+        True
+        False
+    ```
+2. `Using array_equal()`
+    - This array_equal() function checks if two arrays have the same elements and same shape.
+    ```
+        numpy.array_equal(arr1, arr2)
+    ```
+### 28. What is Vectorization in Numpy?
+- Vectorization in NumPy means performing operations on entire arrays or vectors at once without using explicit loops. NumPy internally uses optimized C code, so vectorized operations are much faster than iterating through elements in Python.
+- Eliminates the need for for loops.
+- Operations are applied element-wise on the whole array.
+- Improves performance and makes code more concise.
+```
+    import numpy as np
+    ​
+    # Without vectorization (using loop)
+    arr = np.array([1, 2, 3, 4, 5])
+    squared_loop = []
+    for x in arr:
+        squared_loop.append(x ** 2)
+    print("Using loop:", squared_loop)
+    ​
+    # With vectorization
+    squared_vectorized = arr ** 2
+    print("Using vectorization:", squared_vectorized)
+    Output:
+
+    Using loop: [1, 4, 9, 16, 25]
+    Using vectorization: [ 1  4  9 16 25]
+```
+### 29. What np.bincount() does
+- Counts how many times each non-negative integer appears in the array.
+- The index = number, value = frequency
+- Counts step by step
+```
+    import numpy as np
+
+    arr = np.array([0, 5, 4, 0, 4, 4, 3, 0, 0, 5, 2, 1, 1, 9])
+    print(np.bincount(arr)) # [4 2 1 1 3 2 0 0 0 1]
+```
