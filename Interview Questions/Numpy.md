@@ -9,6 +9,34 @@
     - Integration with other libraries : foundation for other pyhton libraries like Pandas, SciPy
     - Indexing and Slicing
     - Memory Management
+- **Why NumPy is fast** :
+1. Vectorization : No Python loops
+    - In Python, operations run inside for loops
+    - NumPy performs operations on entire array once using vectorized code.
+        - Eliminates Python interprepreter overhead
+        - Uses compiled C loops internally
+        - Vectorized NumPy operations still use loops internally, but those loops run in optimized C with SIMD and cache-friendly memory access, eliminating Python interpreter overhead.
+2. Contiguous memory layout : Stores data continuously without gaps/breaks
+    - NumPy arrays store data in continuous memory blocks, unlike Python lists (which store references)
+        - Fast memory access
+        - Less memory overhead
+        - Better CPU cache utilization
+3. Homogeneous data types :
+    - Python lists can store mixed types -> required type checking
+    - NumPy arrays store single dtype -> no run time checking
+4. Broadcasting : avoids data copies
+    - NumPy can operate on arrays of different shapes without creating copies
+    - Less memory usage
+5. Implemented in C / Fortran (BLAS, LAPACK)
+    - Core NumPy operations use highly optimized libraries:
+        - BLAS → fast linear algebra
+        - LAPACK → matrix decomposition
+        - Vectorized CPU instructions (SIMD)
+- **Why C is fast?**
+    - C is a compiled language
+    - Code is directly translated into CPU instructions before execution
+    - No interpreter at runtime, direct CPU execution
+
 ### 2. Why Numpy is Important ?
 1. Speed and Performance : NumPy is written in C, so it’s very fast
 2. Handles large datasets like images or time-series data efficiently.
@@ -257,7 +285,7 @@ To handle MemoryError, I use chunk loading, memory mapping, dtype optimization, 
 - `__array_ufunc__` is a special method (dunder method) that lets custom classes override how NumPy ufuncs behave.
     - Introduced in NumPy 1.13
     - Enables custom array-like objects to integrate with NumPy
-### 24.  Convert a multidimensional array to 1D array.
+### 24. Convert a multidimensional array to 1D array.
 - Convert a multidimensional array to a 1D array which is also known as flattening the array in NumPy using various methods. Two common methods are using for the Convert a multidimensional array to 1D array.
 1. Using flatten():
     ```
