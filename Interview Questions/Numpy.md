@@ -278,8 +278,6 @@ NumPy handles memory efficiently using contiguous storage, homogeneous dtypes, v
 NumPy achieves parallelism indirectly through vectorized operations and multi-threaded BLAS/LAPACK libraries that execute computations across CPU cores and SIMD units.
 ### 21. You have 10M rows — Python loop is slow. What do you do?
 I avoid Python loops and use NumPy vectorization. If vectorization isn’t possible, I use Numba for JIT compilation or Dask for chunked/distributed processing.
-### 22. Memory error while loading large dataset ?
-To handle MemoryError, I use chunk loading, memory mapping, dtype optimization, column filtering, and out-of-core tools like Dask.
 ### 23. What is __array_ufunc__ and why is it important?
 - A ufunc (universal function) is a NumPy function that operates element-wise on arrays.
 - `__array_ufunc__` is a special method (dunder method) that lets custom classes override how NumPy ufuncs behave.
