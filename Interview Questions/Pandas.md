@@ -1,0 +1,12 @@
+### 1. What is Pandas in Python and its key features ?
+- Pandas is an open-source Python library used for data manipulation and analysis
+- Pandas most commonly used for data science, data analysis, and machine learning tasks
+- The key features of Pandas are as follows:
+    - Fast and efficient data manipulation and analysis
+    - Provides time-series functionality
+    - We can easily handle missing data
+    - Faster data merging and joining
+    - Flexible reshaping of data sets
+    - Group by functionality
+    - Data from different file objects can be loaded
+    - Integrates with NumPy
