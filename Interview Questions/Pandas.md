@@ -272,3 +272,311 @@ There are many ways to Select a single column of a dataframe. They are as follow
         df = df.set_axis(["Name", "Age"], axis=1)
     ```
 ### 11. How to add Row or Column to an Existing Dataframe?
+#### Adding Column to the Dataframe
+1. By declaring a new list or dictionary as column
+    - First create dataframe
+    - Add new column to the DataFrame by with the list of values.
+    - Length of the list should be equal to the length of index column, else it will show error.
+        ```
+            import pandas as pd
+
+            # Define a dictionary containing Students data
+            data = {'Name': ['Pandas', 'Geeks', 'for', 'Geeks'],
+                    'Height': [1, 2, 3, 4],
+                    'Qualification': ['A', 'B', 'C', 'D']}
+
+            # Convert the dictionary into DataFrame
+            df = pd.DataFrame(data)
+
+            # Declare a list that is to be converted into a column
+            address = ['NewYork', 'Chicago', 'Boston', 'Miami']
+
+            # Using 'Address' as the column name
+            # and equating it to the list
+            df['Address'] = address
+
+            display(df)
+        ```
+    - Using list for adding column will modify the existing dataframe.
+2. Using DataFrame.assign() method
+    - Adding New Column with assign() method creates a new DataFrame with the specified column(s) added.
+    - The original DataFrame remains unchanged unless we explicitly reassign the result back to it.
+    ```
+        import pandas as pd
+
+        # Define a dictionary containing Students data
+        data = {'Name': ['Pandas', 'Geeks', 'for', 'Geeks'],
+        'Height': [1, 2, 3, 4],
+        'Qualification': ['A', 'B', 'C', 'D']}
+
+        # Convert the dictionary into DataFrame
+        df = pd.DataFrame(data)
+
+        # using assign() and passing address list as parameter
+        df = df.assign(address = ['NewYork', 'Chicago', 'Boston', 'Miami'])
+
+        print(df)
+    ```
+    - We can also use assign() method for adding Multiple columns at the same time by passing multiple key-value pairs (where the key is the column name and the value is the column data). It returns a new DataFrame, leaving the original one unchanged. We can achieve that using dictionary unpacking.
+    ```
+        #example -  add both "Age" and "City" columns
+        new_columns = {'Age': [21, 22, 23, 24],
+                    'City': ['NY', 'LA', 'SF', 'DC']}
+
+        # unpacks new_columns dictionary and adds both "Age" and "City"
+        df = df.assign(**new_columns)
+        print(df)
+    ```
+3. using DataFrame.insert()
+    - insert() method modifies the original dataframe, so there’s no need to reassign the DataFrame after using it.
+    - add a column at any position and not just at the end.
+    It also provides different options for inserting the column values.
+    ```
+        import pandas as pd
+
+        # Define a dictionary containing Students data
+        data = {'Name': ['Pandas', 'Geeks', 'for', 'Geeks'],
+                'Height': [1, 2, 3, 4],
+                'Qualification': ['A', 'B', 'C', 'D']}
+
+        # Convert the dictionary into DataFrame
+        df = pd.DataFrame(data)
+
+        # Using insert() to add a column at position 2 (3rd column)
+        df.insert(2, "Age", [21, 23, 24, 21], True)
+        print(df)
+    ```
+4. using Dataframe.loc()
+    - Using .loc[], you can add a new column directly or modify values based on conditions, or when adding new columns based on specific row selections.
+    ```
+        import pandas as pd
+        ​
+        # dictionary containing Students data
+        data = {'Name': ['Pandas', 'Geeks', 'for', 'Geeks'],
+                'Height': [1, 2, 3, 4],
+                'Qualification': ['A', 'B', 'C', 'D']}
+        ​
+        # Convert the dictionary into DataFrame
+        df = pd.DataFrame(data)
+        ​
+        # Using .loc[] to add a "Category" column
+        # based on height condition
+        df.loc[df['Height'] >= 3, 'Category'] = 'Tall'
+        df.loc[df['Height'] < 3, 'Category'] = 'Short'
+        ​
+        # Observe the result
+        print(df)
+    ```
+#### Adding row to the Dataframe :
+1. Using loc[] - By Specifying its Index and Values
+    - The loc[] method is directly modifying an existing DataFrame
+    ```
+        import pandas as pd
+        data = {"Name": ["Alice", "Bob"], "Age": [25, 30]}
+        df = pd.DataFrame(data)
+
+        # Add a new row using loc[]
+        df.loc[len(df)] = ["Charlie", 35]
+        print(df)
+    ```
+2. Adding Row Using concat()
+    - The concat() function merges two DataFrames along rows (or columns).
+    - To add a single row, create it as a DataFrame and concatenate it with the original.
+    - Ideal for adding multiple rows or when working with external data sources.
+    - It avoids modifying the original DataFrame directly.
+    ```
+        import pandas as pd
+        data = {"Name": ["Alice", "Bob"], "Age": [25, 30]}
+        df = pd.DataFrame(data)
+        ​
+        # single row
+        new_row = pd.DataFrame({"Name": ["Eve"], "Age": [28]})
+        df = pd.concat([df, new_row], ignore_index=True)
+        print(df)
+
+        # Multiple rows as a DataFrame
+        new_rows = pd.DataFrame({"Name": ["Charlie", "Diana"], "Age": [35, 28]})
+        df = pd.concat([df, new_rows], ignore_index=True)
+        print(df)
+    ```
+3. Adding a Row with Default Values
+    - When you need to add a placeholder row with default values for further updates or processing.
+    ```
+        import pandas as pd
+        data = {"Name": ["Alice", "Bob"], "Age": [25, 30]}
+        df = pd.DataFrame(data)
+        ​
+        # Add a placeholder row
+        df.loc[len(df)] = ["Unknown", 0]
+        print(df)
+    ```
+4. Adding Rows Conditionally
+    - Adding rows only if certain conditions are met.
+    ```
+        import pandas as pd
+        data = {"Employee": ["Alice", "Bob"], "Salary": [5000, 6000]}
+        df = pd.DataFrame(data)
+        ​
+        # Add a row only if the salary is below a threshold
+        if df["Salary"].max() < 7000:
+            df.loc[len(df)] = ["Charlie", 7000]
+        print(df)
+    ```
+5. Adding Rows with Missing Columns
+    - Handling scenarios where the new row has fewer columns than the original DataFrame.
+    ```
+        import pandas as pd
+        data = {"Name": ["Alice", "Bob"], "Age": [25, 30], "City": ["NY", "LA"]}
+        df = pd.DataFrame(data)
+        ​
+        # Add a row missing one column
+        new_row = {"Name": "Charlie", "Age": 35}  # No "City"
+        df = pd.concat([df, pd.DataFrame([new_row])], ignore_index=True)
+        print(df)
+    ```
+### 12. How to Delete an Row or Column from an Existing DataFrame?
+In Pandas, deleting rows or columns from a DataFrame is usually done using the drop() method.
+#### Delete a Column
+1. Using drop() method
+    - Drop single column
+    ```
+        import pandas as pd
+
+        df = pd.DataFrame({
+            "name": ["A", "B", "C"],
+            "age": [20, 25, 30],
+            "salary": [30000, 40000, 50000]
+        })
+
+        df = df.drop("salary", axis=1)
+        print(df)
+    ```
+    - Drop multiple columns
+    ```
+        df = df.drop(["age", "salary"], axis=1)
+    ```
+    - Delete column using inplace=True : modifies original dataframe
+    ```
+        df.drop("salary", axis=1, inplace=True)
+    ```
+2. Delete Using del (Column Only)
+    ```
+        del df["salary"]
+    ```
+#### Delete a Row
+1. Using drop() method
+    - Delete row by index
+        ```
+            df = df.drop(1)
+        ```
+    - Delete multiple rows
+    ```
+        df = df.drop([0, 2])
+    ```
+    - Delete row with inplace=True
+    ```
+        df.drop(1, inplace=True)
+    ```
+2. Delete Rows Based on Condition
+    ```
+        df = df[df["age"] > 22]
+    ```
+    - Keeps rows matching condition
+    - Indirect way to delete rows
+### 13. How to Merge Two DataFrames?
+- In Pandas, merging DataFrames is used to combine data from multiple tables (just like SQL joins).
+- The main function to merge two dataframes is `pd.merge()`
+1. Using `concat()` to Combine DataFrames
+    - The concat() function allows you to stack DataFrames by adding rows on top of each other or columns side by side.
+    - Stacking DataFrames Vertically
+    ```
+        import pandas as pd
+        ​
+        df1 = pd.DataFrame({'Name': ['Alice', 'Bob'], 'Age': [25, 30]})
+        df2 = pd.DataFrame({'Name': ['Charlie', 'David'], 'Age': [35, 40]})
+        ​
+        c_df = pd.concat([df1, df2])
+        ​
+        print(c_df)
+
+        # The indexes are not reset. Use ignore_index=True for clean indexes
+        combinedf = pd.concat([df1, df2], ignore_index=True)
+        print(combinedf)
+    ```
+    - Stacking DataFrames Horizontally
+    ```
+        df1 = pd.DataFrame({'Name': ['Alice', 'Bob'], 'Age': [25, 30]})
+        df2 = pd.DataFrame({'City': ['New York', 'Los Angeles'], 'Salary': [70000, 80000]})
+
+        c_df = pd.concat([df1, df2], axis=1)
+
+        print(c_df)
+    ```
+2. Using `merge()` to combine dataframes
+    - The merge() Function is like joining tables in SQL. It combines DataFrames based on common columns or indexes.
+    1. Basic Merge (Inner Join)
+        - Keeps only matching rows
+        ```
+            import pandas as pd
+
+            df1 = pd.DataFrame({
+                "id": [1, 2, 3],
+                "name": ["A", "B", "C"]
+            })
+
+            df2 = pd.DataFrame({
+                "id": [1, 2, 4],
+                "salary": [30000, 40000, 50000]
+            })
+
+            merged = pd.merge(df1, df2, on="id")
+            print(merged)
+        ```
+    2. Outer Join
+        - Keeps all rows from both DataFrames
+        - Missing values filled with NaN
+        ```
+            merged = pd.merge(df1, df2, on="id", how="outer")
+        ```
+    3. Left Join
+        - Keeps all rows from left DataFrame and matching rows from right
+        - Missing values become NaN
+        ```
+            merged = pd.merge(df1, df2, on="id", how="left")
+        ```
+    4. Right Join
+        - Keeps all rows from right DataFrame and matching rows from left
+        - Missing values become NaN
+        ```
+            merged = pd.merge(df1, df2, on="id", how="outer")
+        ```
+    5. Merge on Different Column Names
+        - Useful when column names differ
+        ```
+            merged = pd.merge(df1, df2, left_on="emp_id", right_on="id")
+        ```
+    6. Merge on Multiple Columns
+        - Similar to composite key joins
+        ```
+            merged = pd.merge(df1, df2, on=["id", "dept"])
+        ```
+    7. Merge Using Index
+        - Used when index represents key
+        ```
+            merged = pd.merge(df1, df2, left_index=True, right_index=True)
+        ```
+- **When to Use: concat() vs merge()**
+    - concat():
+        - When you want to stack DataFrames (add rows or columns).
+        - When the DataFrames have similar structures.
+    - merge():
+        -   When you need to join DataFrames based on shared columns or indices.
+        - When you need different types of joins (inner, outer, etc.).
+### merge() vs join() vs concat()
+| Feature | merge()	| join() | concat() |
+| ------- | ------- | ------ | -------- |
+| Purpose	| SQL-style join | Index join | Stacking data |
+| Key-based join | Yes	| Mostly index	| No |
+| Flexibility	| Most flexible | Medium | Simple stacking |
+| Axis control | Column-based |	Index-based	| Row or column |
+| Common use | Relational data | Index alignment	Append data |
