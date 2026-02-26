@@ -580,4 +580,293 @@ In Pandas, deleting rows or columns from a DataFrame is usually done using the d
 | Key-based join | Yes	| Mostly index	| No |
 | Flexibility	| Most flexible | Medium | Simple stacking |
 | Axis control | Column-based |	Index-based	| Row or column |
-| Common use | Relational data | Index alignment	Append data |
+| Common use | Relational data | Index alignment | Append data |
+### 15. How to sort a Dataframe ?
+In Pandas, sorting a DataFrame is mainly done using:
+1. **sort_values()** → sort a dataframe by one or more columns in either ascending or descending order
+    1. `Sorting a dataframe by single row` :
+        - The sort_values() method in Pandas makes it easy to sort our DataFrame by a single column. By default, it sorts in ascending order.
+        ```
+            import pandas as pd
+            data = {'Name': ['Alice', 'Bob', 'Charlie', 'David'],
+                    'Age': [25, 30, 35, 40],
+                    'Score': [85, 90, 95, 80]}
+            df = pd.DataFrame(data)
+
+            sorted_df = df.sort_values(by='Age') # Ascending order
+            print(sorted_df)
+
+            sorted_df = df.sort_values(by='Age',ascending=False) # descending order
+        ```
+    2. `Sorting a DataFrame by Multiple Columns` :
+        ```
+            import pandas as pd
+            data = {'Name': ['Alice', 'Bob', 'Charlie', 'David'],
+                    'Age': [25, 30, 35, 40],
+                    'Score': [85, 90, 95, 80]}
+            df = pd.DataFrame(data)
+
+            sorted_df = df.sort_values(by=['Age', 'Score'])
+            print(sorted_df)
+        ```
+        - This will sort first by Age and if multiple rows have the same Age, it will then sort those rows by Salary.
+    3. `Sorting DataFrame with Missing Values` :
+        - By default sort_values() places NaN values at the end. If we need them at the top, we can use the na_position parameter.
+        ```
+            import pandas as pd
+            data_with_nan = {"Name": ["Alice", "Bob", "Charlie", "David"],"Age": [28, 22, None, 22]}
+            df_nan = pd.DataFrame(data_with_nan)
+
+            sorted_df = df_nan.sort_values(by="Age", na_position="first")
+            print(sorted_df)
+        ```
+        - Any rows with missing values in the Age column are placed at the top of the DataFrame.
+
+
+2. **sort_index()** → sort by index
+    1. `Sort by index` :
+        - sort_index() sorts the DataFrame based on the index in ascending order
+        ```
+            import pandas as pd
+            data = {'Name': ['Alice', 'Bob', 'Charlie', 'David'],
+                    'Age': [25, 30, 35, 40],
+                    'Score': [85, 90, 95, 80]}
+            df = pd.DataFrame(data)
+
+            df_sorted_by_index = df.sort_index()
+            print(df_sorted_by_index)
+        ```
+    - `Sort in descending order`:
+        - sort by index in descending order by passing the ascending=False argument.
+        ```
+            import pandas as pd
+            data = {'Name': ['Alice', 'Bob', 'Charlie', 'David'],
+                    'Age': [25, 30, 35, 40],
+                    'Score': [85, 90, 95, 80]}
+            df = pd.DataFrame(data)
+            df_sorted_by_index_desc = df.sort_index(ascending=False)
+            print(df_sorted_by_index_desc)
+        ```
+### 16. How to Check and Remove Duplicate Values in Pandas.
+- In Pandas, duplicate values can be checked by using the `duplicated()` method.
+    ```
+        DataFrame.duplicated()
+    ```
+- To remove duplicate values, use drop_duplicates() method.
+    ```
+        DataFrame.drop_duplicates()
+    ```
+- The drop_duplicates() method in Pandas is designed to remove duplicate rows from a DataFrame based on all columns or specific ones. By default, it scans the entire DataFrame and retains the first occurrence of each row and removes any duplicates that follow.
+    ```
+        import pandas as pd
+
+        data = {
+            "Name": ["Alice", "Bob", "Alice", "David"],
+            "Age": [25, 30, 25, 40],
+            "City": ["NY", "LA", "NY", "Chicago"]
+        }
+
+        df = pd.DataFrame(data)
+
+        print("Original DataFrame:")
+        print(df)
+
+        df_cleaned = df.drop_duplicates()
+
+        print("\nModified DataFrame (no duplicates)")
+        print(df_cleaned)
+    ```
+1. `Dropping Duplicates Based on Specific Columns`
+    - Remove the duplicates in specific columns using the subset parameter.
+    ```
+        import pandas as pd
+        ​
+        df = pd.DataFrame({
+            'Name': ['Alice', 'Bob', 'Alice', 'David'],
+            'Age': [25, 30, 25, 40],
+            'City': ['NY', 'LA', 'SF', 'Chicago']
+        })
+        ​
+        df_cleaned = df.drop_duplicates(subset=["Name"])
+        ​
+        print(df_cleaned)
+    ```
+2. `Keeping the Last Occurrence of Duplicates`
+    - By default drop_duplicates() retains the first occurrence of duplicates. If we want to keep the last occurrence we can use keep='last'.
+    ```
+        import pandas as pd
+        ​
+        df = pd.DataFrame({
+            'Name': ['Alice', 'Bob', 'Alice', 'David'],
+            'Age': [25, 30, 25, 40],
+            'City': ['NY', 'LA', 'NY', 'Chicago']
+        })
+        ​
+        df_cleaned= df.drop_duplicates(keep='last')
+        print(df_cleaned)
+    ```
+3. `Dropping All Duplicates`
+    - If we want to remove all rows that are duplicates, we can set keep=False.
+    ```
+        import pandas as pd
+        ​
+        df = pd.DataFrame({
+            'Name': ['Alice', 'Bob', 'Alice', 'David'],
+            'Age': [25, 30, 25, 40],
+            'City': ['NY', 'LA', 'NY', 'Chicago']
+        })
+        df_cleaned = df.drop_duplicates(keep=False)
+        print(df_cleaned)
+    ```
+4. `Modifying the Original DataFrame Directly`
+    - If we want to modify the DataFrame in place without creating a new DataFrame set inplace=True.
+    ```
+        import pandas as pd
+        ​
+        df = pd.DataFrame({
+            'Name': ['Alice', 'Bob', 'Alice', 'David'],
+            'Age': [25, 30, 25, 40],
+            'City': ['NY', 'LA', 'NY', 'Chicago']
+        })
+        df.drop_duplicates(inplace=True)
+        print(df)
+    ```
+### 17. How to Handle Missing Data in Pandas?
+- Handling missing data (NaN / None) is a core step in data cleaning with Pandas.
+- Pandas provides powerful methods to detect, remove, and fill missing values.
+- **Checking Missing Values in Pandas**
+    1. Using isnull()
+        - isnull() returns True for NaN values or null values and False for present values
+        ```
+            import pandas as pd
+            import numpy as np
+
+            d = {'First Score': [100, 90, np.nan, 95],
+                    'Second Score': [30, 45, 56, np.nan],
+                    'Third Score': [np.nan, 40, 80, 98]}
+            df = pd.DataFrame(d)
+
+            mv = df.isnull()
+
+            print(mv)
+        ```
+    2. Using isna()
+        - isna() returns True for NaN values or null values and False for present values
+        ```
+            import pandas as pd
+            import numpy as np
+
+            data = {'Name': ['Amit', 'Sita', np.nan, 'Raj'],
+                    'Age': [25, np.nan, 22, 28]}
+
+            df = pd.DataFrame(data)
+
+            # Check for missing values using isna()
+            print(df.isna())
+        ```
+- **Filling missing values**
+1. `using fillna()` : fillna() used to replace missing values (NaN) with a given value.
+    1. `Fill Missing Values with Zero`
+        ```
+            import pandas as pd
+            import numpy as np
+
+            d = {'First Score': [100, 90, np.nan, 95],
+                    'Second Score': [30, 45, 56, np.nan],
+                    'Third Score': [np.nan, 40, 80, 98]}
+            df = pd.DataFrame(d)
+
+            df.fillna(0)
+        ```
+    2. `Fill with Previous Value (Forward Fill)`
+        - The pad method is used to fill missing values with the previous value.
+        ```
+            df.fillna(method='pad')
+        ```
+    3. `Fill with Next Value (Backward Fill)`
+        - The bfill function is used to fill it with the next value.
+        ```
+            df.fillna(method='bfill')
+        ```
+2. `using replace()` : Use replace() function to replace NaN values with a specific value.
+    ```
+        df.replace(np.nan, 0)
+    ```
+- **Droping Missing values** : The dropna() function used to removes rows or columns with NaN values. It can be used to drop data based on different conditions.
+1. `Dropping Rows with At Least One Null Value`
+    - Remove rows that contain at least one missing value.
+    ```
+        import pandas as pd
+        import numpy as np
+
+        dict = {'First Score': [100, 90, np.nan, 95],
+                'Second Score': [30, np.nan, 45, 56],
+                'Third Score': [52, 40, 80, 98],
+                'Fourth Score': [np.nan, np.nan, np.nan, 65]}
+        df = pd.DataFrame(dict)
+
+        df.dropna()
+    ```
+2. `Dropping Rows with All Null Values`
+    - We can drop rows where all values are missing using dropna(how='all').
+    ```
+        dict = {'First Score': [100, np.nan, np.nan, 95],
+                'Second Score': [30, np.nan, 45, 56],
+                'Third Score': [52, np.nan, 80, 98],
+                'Fourth Score': [np.nan, np.nan, np.nan, 65]}
+        df = pd.DataFrame(dict)
+
+        df.dropna(how='all')
+    ```
+3. `Dropping Columns with At Least One Null Value`
+    - To remove columns that contain at least one missing value we use dropna(axis=1).
+    ```
+        dict = {'First Score': [100, np.nan, np.nan, 95],
+                'Second Score': [30, np.nan, 45, 56],
+                'Third Score': [52, np.nan, 80, 98],
+                'Fourth Score': [60, 67, 68, 65]}
+        df = pd.DataFrame(dict)
+
+        df.dropna(axis=1)
+    ```
+4. `Dropping Rows with Missing Values in CSV Files`
+    - When working with CSV files, we can drop rows with missing values using dropna().
+    ```
+        import pandas as pd
+        d = pd.read_csv("/content/employees.csv")
+
+        nd = d.dropna(axis=0, how='any')
+
+        print("Old data frame length:", len(d))
+        print("New data frame length:", len(nd))
+        print("Rows with at least one missing value:", (len(d) - len(nd)))
+    ```
+### 18. What is the difference between loc and iloc in Pandas?
+- `loc:` It is label-based i.e you access rows and columns using their labels (row and column names).
+    ```
+        df.loc[row_labels, column_labels]
+    ```
+- `iloc:` It is integer-position based and here you access rows and columns using their numeric index positions (row and column numbers).
+    ```
+        df.iloc[row_positions, column_positions]
+    ```
+### 19. What is the Significance of Describe function in Pandas?
+- In pandas, the describe() function is used to generate summary statistics of a dataset. It helps you quickly understand the distribution, central tendency, and spread of your data.
+- When applied to a DataFrame or Series, it automatically calculates:
+    - Count – Number of non-null values
+    - Mean – Average value
+    - Std – Standard deviation (spread of data)
+    - Min – Minimum value
+    - 25% – First quartile (Q1)
+    - 50% – Median (Q2)
+    - 75% – Third quartile (Q3)
+    - Max – Maximum value
+### 20. What is groupby() in Pandas and how is it used?
+- The groupby() function in Pandas is used to split the data into groups based on one or more columns, then apply an operation (like aggregation, transformation or filtering) on each group separately.
+- Syntax : `df.groupby(by_column)`
+
+### 21. What is Data Aggregation in Pandas?
+### 22. What is Time Series in Pandas?
+### 23. How to convert a String to Datetime in Pandas?
+### 24. What is Time Delta in Pandas?
+### 25. What is Multi-Indexing in Pandas?
