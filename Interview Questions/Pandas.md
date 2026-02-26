@@ -41,14 +41,14 @@
     - DataFrame is a two-dimensional heterogeneous data structure.
     - It stores data in a tabular form.
     - The size of the dataframe is mutable.
-    - The Panadas dataframe petentially manages Heterogeneous tabular data with labelled axes represented as Rows and Columns.
+    - The Panadas dataframe potentially manages Heterogeneous tabular data with labelled axes represented as Rows and Columns.
     - Pandas dataframe consists of three principal components
         - Data
         - Rows
         - Columns
 ### 3. What are the Different Ways to Create a Series?
 - In Pandas, a series can be created in many ways. They are as follows:
-1. `Creating a Series from a List`
+1. Creating a Series from a List
     - We can create a series using a Python list and pass it to the Series() constructor.
     ```
         import pandas as pd
@@ -57,12 +57,12 @@
         print(s)
     ```
     - Pandas automatically assigns index 0, 1, 2
-2. `From List with Custom Index`
+2. From List with Custom Index
     - Create a Series using Python List and pass the custom indexes
     ```
         s = pd.Series([10, 20, 30], index=["a", "b", "c"])
     ```
-3. `Creating a Series from Dictionary` :
+3. Creating a Series from Dictionary :
     - Create a Series using Python dictionary and pass it to the Series constructor. The keys of the dictionary are become indexes and values becomes data.
     ```
         import pandas as pd
@@ -71,12 +71,12 @@
 
         print(pd.Series(dict))
     ```
-4. `From a Scalar Value` :
+4. From a Scalar Value :
     - Creates Series with repeated value.
     ```
         s = pd.Series(5, index=["a", "b", "c"])
     ```
-5. `From NumPy Array`
+5. From NumPy Array
     ```
         import numpy as np
 
@@ -84,17 +84,17 @@
         s = pd.Series(arr)
     ```
     - Fast because uses NumPy internally
-6. `From Another Series (Copy)`
+6. From Another Series (Copy)
     - Useful when modifying without affecting original
     ```
         s1 = pd.Series([1,2,3])
         s2 = pd.Series(s1)
     ```
-7. `From Range / Sequence`
+7. From Range / Sequence
     ```
         s = pd.Series(range(5))
     ```
-8. `Creating a Series using NumPy Functions` :
+8. Creating a Series using NumPy Functions :
     - The Numpy module's functions, such as numpy.linspace() and numpy.random.randn() can also be used to create a Pandas series.
     ```
         import pandas as pd
@@ -108,7 +108,7 @@
     ```
 ### 4. What are the Different ways to Create a DataFrame in Pandas?
 - In Pandas, a dataframe can be created in many ways. They are as follows:
-1. `Creating a DataFrame using a List`
+1. Creating a DataFrame using a List
     - Pass the list to the DataFrame() constructor.
     ```
         import pandas as pd
@@ -118,7 +118,7 @@
 
         print(pd.DataFrame(lst))
     ```
-2. `Creating a DataFrame using a Dictionary` :
+2. Creating a DataFrame using a Dictionary :
     - Pass the dictionary to the DataFrame() constructor.
     - The Keys of the dictionary will be the column names and the values of the dictionary are the data of the DataFrame.
     ```
@@ -128,7 +128,7 @@
 
         print(pd.DataFrame(data))
     ```
-3. `Creating a DataFrame using a List of Dictionaries`
+3. Creating a DataFrame using a List of Dictionaries
     - Pass the list of dictionaries to the Dataframe constructor.
     - Each dictionary represents a row.
     ```
@@ -139,26 +139,26 @@
 
         df = pd.DataFrame(data)
     ```
-4. `Creating a DataFrame from Pandas Series`
+4. Creating a DataFrame from Pandas Series
     ```
         s1 = pd.Series([1,2,3])
         s2 = pd.Series([4,5,6])
 
         df = pd.DataFrame({"A": s1, "B": s2})
     ```
-5. `From CSV File`
+5. From CSV File
     ```
         df = pd.read_csv("file.csv")
     ```
-6. `From Excel File`
+6. From Excel File
     ```
         df = pd.read_excel("file.xlsx")
     ```
-7. `From JSON`
+7. From JSON
     ```
         df = pd.read_json("file.json")
     ```
-8. `From SQL Database`
+8. From SQL Database
     ```
         import sqlite3
 
