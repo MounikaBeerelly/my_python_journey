@@ -272,8 +272,8 @@ There are many ways to Select a single column of a dataframe. They are as follow
         df = df.set_axis(["Name", "Age"], axis=1)
     ```
 ### 11. How to add Row or Column to an Existing Dataframe?
-#### Adding Column to the Dataframe
-1. By declaring a new list or dictionary as column
+**Adding Column to the Dataframe**
+1. `By declaring a new list or dictionary as column`
     - First create dataframe
     - Add new column to the DataFrame by with the list of values.
     - Length of the list should be equal to the length of index column, else it will show error.
@@ -298,7 +298,7 @@ There are many ways to Select a single column of a dataframe. They are as follow
             display(df)
         ```
     - Using list for adding column will modify the existing dataframe.
-2. Using DataFrame.assign() method
+2. `Using DataFrame.assign() method`
     - Adding New Column with assign() method creates a new DataFrame with the specified column(s) added.
     - The original DataFrame remains unchanged unless we explicitly reassign the result back to it.
     ```
@@ -327,7 +327,7 @@ There are many ways to Select a single column of a dataframe. They are as follow
         df = df.assign(**new_columns)
         print(df)
     ```
-3. using DataFrame.insert()
+3. `using DataFrame.insert()`
     - insert() method modifies the original dataframe, so there’s no need to reassign the DataFrame after using it.
     - add a column at any position and not just at the end.
     It also provides different options for inserting the column values.
@@ -346,7 +346,7 @@ There are many ways to Select a single column of a dataframe. They are as follow
         df.insert(2, "Age", [21, 23, 24, 21], True)
         print(df)
     ```
-4. using Dataframe.loc()
+4. `using Dataframe.loc()`
     - Using .loc[], you can add a new column directly or modify values based on conditions, or when adding new columns based on specific row selections.
     ```
         import pandas as pd
@@ -367,8 +367,8 @@ There are many ways to Select a single column of a dataframe. They are as follow
         # Observe the result
         print(df)
     ```
-#### Adding row to the Dataframe :
-1. Using loc[] - By Specifying its Index and Values
+**Adding row to the Dataframe :**
+1. `Using loc[] - By Specifying its Index and Values`
     - The loc[] method is directly modifying an existing DataFrame
     ```
         import pandas as pd
@@ -379,7 +379,7 @@ There are many ways to Select a single column of a dataframe. They are as follow
         df.loc[len(df)] = ["Charlie", 35]
         print(df)
     ```
-2. Adding Row Using concat()
+2. `Adding Row Using concat()`
     - The concat() function merges two DataFrames along rows (or columns).
     - To add a single row, create it as a DataFrame and concatenate it with the original.
     - Ideal for adding multiple rows or when working with external data sources.
@@ -399,7 +399,7 @@ There are many ways to Select a single column of a dataframe. They are as follow
         df = pd.concat([df, new_rows], ignore_index=True)
         print(df)
     ```
-3. Adding a Row with Default Values
+3. `Adding a Row with Default Values`
     - When you need to add a placeholder row with default values for further updates or processing.
     ```
         import pandas as pd
@@ -410,7 +410,7 @@ There are many ways to Select a single column of a dataframe. They are as follow
         df.loc[len(df)] = ["Unknown", 0]
         print(df)
     ```
-4. Adding Rows Conditionally
+4. `Adding Rows Conditionally`
     - Adding rows only if certain conditions are met.
     ```
         import pandas as pd
@@ -422,7 +422,7 @@ There are many ways to Select a single column of a dataframe. They are as follow
             df.loc[len(df)] = ["Charlie", 7000]
         print(df)
     ```
-5. Adding Rows with Missing Columns
+5. `Adding Rows with Missing Columns`
     - Handling scenarios where the new row has fewer columns than the original DataFrame.
     ```
         import pandas as pd
@@ -436,8 +436,9 @@ There are many ways to Select a single column of a dataframe. They are as follow
     ```
 ### 12. How to Delete an Row or Column from an Existing DataFrame?
 In Pandas, deleting rows or columns from a DataFrame is usually done using the drop() method.
-#### Delete a Column
-1. Using drop() method
+
+**Delete a Column**
+1. `Using drop() method`
     - Drop single column
     ```
         import pandas as pd
@@ -459,12 +460,12 @@ In Pandas, deleting rows or columns from a DataFrame is usually done using the d
     ```
         df.drop("salary", axis=1, inplace=True)
     ```
-2. Delete Using del (Column Only)
+2. `Delete Using del (Column Only)`
     ```
         del df["salary"]
     ```
-#### Delete a Row
-1. Using drop() method
+**Delete a Row**
+1. `Using drop() method`
     - Delete row by index
         ```
             df = df.drop(1)
@@ -477,7 +478,7 @@ In Pandas, deleting rows or columns from a DataFrame is usually done using the d
     ```
         df.drop(1, inplace=True)
     ```
-2. Delete Rows Based on Condition
+2. `Delete Rows Based on Condition`
     ```
         df = df[df["age"] > 22]
     ```
@@ -486,7 +487,7 @@ In Pandas, deleting rows or columns from a DataFrame is usually done using the d
 ### 13. How to Merge Two DataFrames?
 - In Pandas, merging DataFrames is used to combine data from multiple tables (just like SQL joins).
 - The main function to merge two dataframes is `pd.merge()`
-1. Using `concat()` to Combine DataFrames
+1. **Using `concat()` to Combine DataFrames**
     - The concat() function allows you to stack DataFrames by adding rows on top of each other or columns side by side.
     - Stacking DataFrames Vertically
     ```
@@ -512,7 +513,7 @@ In Pandas, deleting rows or columns from a DataFrame is usually done using the d
 
         print(c_df)
     ```
-2. Using `merge()` to combine dataframes
+2. **Using `merge()` to combine dataframes**
     - The merge() Function is like joining tables in SQL. It combines DataFrames based on common columns or indexes.
     1. Basic Merge (Inner Join)
         - Keeps only matching rows
@@ -572,7 +573,7 @@ In Pandas, deleting rows or columns from a DataFrame is usually done using the d
     - merge():
         -   When you need to join DataFrames based on shared columns or indices.
         - When you need different types of joins (inner, outer, etc.).
-### merge() vs join() vs concat()
+### 14. merge() vs join() vs concat()
 | Feature | merge()	| join() | concat() |
 | ------- | ------- | ------ | -------- |
 | Purpose	| SQL-style join | Index join | Stacking data |
