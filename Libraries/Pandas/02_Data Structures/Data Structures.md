@@ -18,7 +18,7 @@
 
 - Series is a `one-dimensional labelled array` like structure with `homogeneous data`.
 - Series can hold any data type
-- The axis labels represented in plotting are collectively calleds `index`.
+- The axis labels represented in plotting are collectively called as `index`.
 - Pandas Series data structure is can be considered like a `column` in an excel sheet
 - Series labels need not be unique but they must be a hashable type
 - The Pandas Series object supports both `integer and label-based indexing`.
