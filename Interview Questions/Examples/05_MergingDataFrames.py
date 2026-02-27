@@ -104,3 +104,35 @@ print("\nMerged DataFrame using Left Join: \n", merged_df)
 merged_df = pd.merge(employees_df, department_df, on = "DEPTNO", how = "right")
 print("\nMerged DataFrame using Right Join: \n", merged_df)
 
+
+""" Merging dataframe using Joins """
+
+
+# Set the index for both dataframes to DEPTNO
+employees_df.set_index("DEPTNO", inplace = True)
+department_df.set_index("DEPTNO", inplace = True)
+
+# Method 1: Using Join method for merging dataframes
+
+# Join the dataframes using the join method
+joined_df = employees_df.join(department_df, how = "inner")
+print("\nJoined DataFrame using Join method: \n", joined_df)
+
+# Method 2: Left Join using Join method
+
+joined_df = employees_df.join(department_df, how = "left")
+print("\nJoined DataFrame using Left Join: \n", joined_df)
+
+# Method 3: Right Join using Join method
+joined_df = employees_df.join(department_df, how = "right")
+print("\nJoined DataFrame using Right Join: \n", joined_df)
+
+# Method 4: Outer Join using Join method
+joined_df = employees_df.join(department_df, how = "outer")
+print("\nJoined DataFrame using Outer Join: \n", joined_df)
+
+# Show only specific columns after join
+print(employees_df)
+print(department_df)
+joined_df = employees_df.join(department_df, how = "inner", on = "DEPTNO").reset_index()
+print("\nJoined DataFrame with specific columns: \n", joined_df[["ENAME",  "DEPTNO", "DNAME"]])
