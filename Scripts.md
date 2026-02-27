@@ -1,4 +1,4 @@
-`__name__` - 
+`__name__` -
    - `__name__` is a special built-in variable in Python that tells you how a Python file is being used.
    - Every Python module has a variable called `__name__`
    - Its value depends on how the module is executed.
@@ -30,3 +30,10 @@
 7. Fetch all the data - `myCursor.fetchall()`
 8. Insert single record -
 9. Insert multiple records -
+
+### VS code extensions:
+1. Python
+2. Python Debugger
+3. Black Formatter
+4. Pylint
+5. isort
