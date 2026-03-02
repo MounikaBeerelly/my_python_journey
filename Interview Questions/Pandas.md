@@ -571,7 +571,7 @@ In Pandas, deleting rows or columns from a DataFrame is usually done using the d
         - When you want to stack DataFrames (add rows or columns).
         - When the DataFrames have similar structures.
     - merge():
-        -   When you need to join DataFrames based on shared columns or indices.
+        - When you need to join DataFrames based on shared columns or indices.
         - When you need different types of joins (inner, outer, etc.).
 ### 14. merge() vs join() vs concat()
 | Feature | merge()	| join() | concat() |
