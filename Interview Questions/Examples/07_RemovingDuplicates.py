@@ -30,3 +30,17 @@ print("\nDataFrame with all duplicates removed (keep=False):\n", unique_none_df)
 # Method 5: Remove duplicates in-place
 df.drop_duplicates(inplace=True) # modifies the original DataFrame to remove duplicates
 print("\nOriginal DataFrame after removing duplicates in-place:\n", df)
+
+
+""" Drop na values in a DataFrame"""
+
+# Method 1: use dropna to remove rows with any missing values
+data_with_nan = {
+    "Name": ["Alice", "Bob", "Charlie", "David"],
+    "Age": [25, None, 35, 40],
+    "City": ["NY", "LA", None, "Chicago"]
+}
+
+df = pd.DataFrame(data_with_nan)
+cleaned_df = df.dropna() # removes rows with any missing values
+print("\nDataFrame with rows containing NaN values removed:\n", cleaned_df)
