@@ -1,5 +1,5 @@
 ### What are Time Delta's in Pandas?
-1. Timedelta in Pandas are differences in time, which are actually expressed in differenct units like 
+1. Timedelta in Pandas are differences in time, which are actually expressed in different units like
     - Days
     - hours
     - Minutes

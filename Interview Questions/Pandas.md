@@ -1065,10 +1065,61 @@ In Pandas, sorting a DataFrame is mainly done using:
 
 ### 21. What is Data Aggregation in Pandas?
 
+- Combining multiple data values into a single summary value using functions like sum, average, count, etc.
+- It is commonly used with groupby()
+- Common Aggregation Functions
+    - sum() → Total
+    - mean() → Average
+    - count() → Number of values
+    - min() → Minimum value
+    - max() → Maximum value
+    - median() → Middle value
+    - std() → Standard deviation
+
 ### 22. What is Time Series in Pandas?
+
+- Time Series in Pandas is: Data that is indexed by dates or time values and analyzed over time.
+- If your data changes over time (daily, monthly, yearly, hourly) — it is time series data.
+- Example of Time Series Data
+    - Stock prices
+    - Sales per day
+    - Website traffic per hour
+    - Temperature readings
 
 ### 23. How to convert a String to Datetime in Pandas?
 
+- In Pandas, strings are converted to datetime using pd.to_datetime(), which converts a column to datetime64 format and supports custom formats and error handling.
+    ```python
+        import pandas as pd
+
+        data = {
+            "Date": ["2024-01-01", "2024-02-15", "2024-03-20"]
+        }
+
+        df = pd.DataFrame(data)
+
+        df["Date"] = pd.to_datetime(df["Date"])
+
+        print(df.dtypes)
+    ```
+- If the date format is not standard, specify the format:
+    ```python
+        df["Date"] = pd.to_datetime(df["Date"], format="%d-%m-%Y")
+    ```
+
 ### 24. What is Time Delta in Pandas?
 
+- Timedelta in Pandas represents the duration or difference between two datetime values and is used for time-based calculations like adding, subtracting, or measuring time intervals.
+    ```python
+        import pandas as pd
+
+        start = pd.to_datetime("2024-01-01")
+        end = pd.to_datetime("2024-01-10")
+
+        difference = end - start
+        print(difference)
+    ```
+
 ### 25. What is Multi-Indexing in Pandas?
+
+- Multi-indexing in Pandas allows a DataFrame to have multiple levels of row or column indexes, enabling hierarchical data representation and advanced data selection.

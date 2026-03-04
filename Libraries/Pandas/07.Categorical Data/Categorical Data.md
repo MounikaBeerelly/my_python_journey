@@ -4,7 +4,7 @@
     - **Illustrative Examples**:
         - Gender of human beings
         - Country names or country codes
-        - any data reoresenting to the specific code of the business.
+        - any data representing to the specific code of the business.
 3. Categorical variables willt ake only a limited and fixed number of possibel values as per the business.
 4. Categorical is a general fixed length, and also by circumstantial requirement it may demand a specific order.
 5. Categorical data should not OR cannot perform any kind of numerical operations.
