@@ -12,15 +12,6 @@ db = mysql.connect(
 
 myCursor = db.cursor()
 
-# Create new Database
-myCursor.execute("CREATE DATABASE StudentTable")
-
-# show all the available databases
-myCursor.execute("SHOW DATABASES")
-myDatabases = myCursor.fetchall()
-for outDBName in myDatabases :
-    print(outDBName)
-
 # Create Table in employees database
 myCursor.execute(
     "CREATE TABLE myDept(DeptID integer, DeptName VARCHAR(30), DeptLoc VARCHAR(20))"
@@ -34,20 +25,11 @@ for outTable in myTables :
 
 # Create table with constraints
 myCursor.execute(
-    "CREATE TABLE myDept02(DeptID INT(2) NOT NULL AUTO_INCREMENT PRIMARY KEY, DeptName VARCHAR(30), DeptLoc VARCHAR(20))"
+    "CREATE TABLE myDept01(DeptID INT(2) NOT NULL AUTO_INCREMENT PRIMARY KEY, DeptName VARCHAR(30), DeptLoc VARCHAR(20))"
 )
 
-# Show all columns
-myCursor.execute("DESCRIBE myDept02")
-deptColumns = myCursor.fetchall()
-for columns in deptColumns :
-    print(columns)
-
-# Drop Table
-myCursor.execute("DROP TABLE myDept")
-
 # Insert data into Table
-insertStatement = "INSERT INTO myDept02(DeptName, DeptLoc) VALUES(%s, %s)"
+insertStatement = "INSERT INTO myDept01(DeptName, DeptLoc) VALUES(%s, %s)"
 insertValues = [("ACCOUNTING", "NEW YORK"), ("SALES", "BOSTON"), ("TELECOM", "DALLAS"), ("RESEARCH", "CALIFORNIA"), ("OPERATIONS", "ATLANTA")]
 
 myCursor.executemany(insertStatement, insertValues)
@@ -61,10 +43,10 @@ print("Department data: ", end = "\n")
 for data in deptData :
     print(data)
 
-# Filter data
-selectStatement = "SELECT * FROM myDept02 ORDER BY DeptID DESC"
-myCursor.execute(selectStatement)
-fetchRecords = myCursor.fetchall()
-print("Department data in descending order: ", end = "\n")
-for record in fetchRecords :
-    print(record)
+# Copy all myDept01 table records into mydept table
+myCursor.execute("""
+    INSERT INTO myDept(DeptName, DeptLoc)
+    SELECT DeptName, DeptLoc FROM myDept01
+""")
+db.commit()
+print("Data copied successfully")
