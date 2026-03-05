@@ -42,7 +42,7 @@
         2. GUI (Graphical User Interface)
             1. Windows Based (Stand alone GUI's)
             2. Web Based (Browser Based)
-                1. MAcro Browser
+                1. Macro Browser
                 2. Micro Browser
     2. Reports Based (Business Data Presentation)
         1. Text Based
@@ -55,7 +55,7 @@
 - **STEP 2 - Middle Layer Software Selection**
     1. Operational Software Installation and Configuration with specific database connector
 
-#### Ensuring PIP in the Machine :    
+#### Ensuring PIP in the Machine :
 - python -m ensurepip
 
 #### Installing PIP on the machine :
