@@ -104,3 +104,50 @@ print("Incremental Load Completed!")
 
 myCursor.close()
 db.close()
+
+"""
+STEPS to implement Incremental Loading
+--------------------------------------
+1. Create Source and Target tables
+    - First, I Create both source and target tables, with an updated_at timestamp column, which helps to
+      identify newly inserted or updated records.
+    - Eg: emp_id, name, sal, updated_at
+    - updated_at column automatically updates whenever a record updates.
+2. Insert initial data into source table
+    - Inserted some records into the source table
+    - At this stage, target table is empty.
+3. Connect Python to the database
+    - Used Python with mysql.connector for connecting the MYSQL database
+        - to execute queries
+        - Read data
+        - Inser/update records
+4. Find the last loaded timestamp
+    - Check the latest timestamp in the target table
+        ```
+            query = select max(updated_at) from target_table;
+            last_loaded_timestamp = query.fetchone()[0]
+        ```
+    - If the target table is empty, I use a default timestamp like 1900-01-01.
+5. Fetch only new or updated records
+    - Then I fetch records from the source table that were modified after the last loaded timestamp
+        ```
+            select *
+            from source_table
+            where updated_at >= last_loaded_timestamp;
+        ```
+    - It fetches only latest updated and inserted data
+6. Load data into Target table
+    - Used UPSERT logic to load data into target table
+        ```
+            INSERT INTO target_employee (...)
+            VALUES (...)
+            ON DUPLICATE KEY UPDATE ...
+        ```
+    - If the record already exists, it updates the existing record. If doesn't exist, it inserts new record
+    - This ensures the target table sync with source table
+7. Final Result :
+    - When the script runs again:
+        - Only new or modified records are transferred
+        - Duplicate rows are avoided
+        - Data pipeline becomes efficient and incremental
+"""
